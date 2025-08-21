@@ -1,0 +1,63 @@
+Table Cliente {
+  id int [pk, increment]
+  nome varchar(150)
+  email varchar(150) [unique]
+  telefone varchar(20)
+}
+
+Table Marca {
+  id int [pk, increment]
+  nome varchar(100)
+}
+
+Table Modelo {
+  id int [pk, increment]
+  nome varchar(100)
+  fk_Marca_id int [ref: > Marca.id]
+}
+
+Table Carro {
+  id int [pk, increment]
+  placa varchar(10) [unique]
+  fk_Modelo_id int [ref: > Modelo.id]
+  fk_Cliente_id int [ref: > Cliente.id]
+}
+
+Table Cargo {
+  id int [pk, increment]
+  nome varchar(100)
+}
+
+Table Funcionario {
+  id int [pk, increment]
+  nome varchar(150)
+  fk_Cargo_id int [ref: > Cargo.id]
+}
+
+Table Orcamento {
+  id int [pk, increment]
+  data date
+  fk_Carro_id int [ref: > Carro.id]
+  fk_Funcionario_id int [ref: > Funcionario.id]
+}
+
+Table Peca {
+  id int [pk, increment]
+  nome varchar(150)
+  valor decimal(10,2)
+}
+
+Table Mao_de_obra {
+  id int [pk, increment]
+  descricao varchar(150)
+  valor decimal(10,2) // valor por hora
+}
+
+Table Servico {
+  id int [pk, increment]
+  fk_Orcamento_id int [ref: > Orcamento.id]
+  fk_Peca_id int [ref: > Peca.id]
+  fk_Mao_de_obra_id int [ref: > Mao_de_obra.id]
+  qtd_items int
+  qtd_horas int
+}

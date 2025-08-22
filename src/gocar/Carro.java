@@ -1,9 +1,11 @@
+package gocar;
+
 public class Carro extends Veiculo {
     int portas;
     boolean arCondicionado;
 
-    public Carro(String marca, String modelo, int ano, double precoBase, int portas, boolean arCondicionado) {
-        super(marca, modelo, ano, precoBase);
+    public Carro(String marca, String modelo, int ano, double precoBase, double tanqueCombustivel, double consumoMedio, int portas, boolean arCondicionado) {
+        super(marca, modelo, ano, precoBase, tanqueCombustivel, consumoMedio);
         this.portas = portas;
         this.arCondicionado = arCondicionado;
     }

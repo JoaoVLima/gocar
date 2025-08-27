@@ -4,8 +4,7 @@ import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("--- GoCar Loja de carros e Mecânica ---\n");
-        System.out.println("Veja a seguir nossos carros:\n");
+        Scanner sc = new Scanner(System.in);
 
         ArrayList<Carro> carros = new ArrayList<>();
 
@@ -39,7 +38,6 @@ public class Main {
         carros.add(new Carro("Volkswagen", "T-Cross", 2021, 118000, 54, 12, 4, true, "Automático", 500, "SUV", 6, true));
         carros.add(new Carro("Ford", "EcoSport", 2020, 105000, 52, 13, 4, true, "Automático", 410, "SUV", 6, false));
         carros.add(new Carro("Toyota", "Hilux", 2021, 220000, 80, 9, 4, true, "Automático", 1000, "Picape", 6, true));
-
         carros.add(new Carro("Honda", "HR-V", 2021, 115000, 55, 12, 4, true, "Automático", 470, "SUV", 6, true));
         carros.add(new Carro("Hyundai", "Tucson", 2020, 130000, 60, 11, 4, true, "Automático", 488, "SUV", 6, true));
         carros.add(new Carro("Renault", "Duster", 2021, 95000, 50, 12, 4, true, "Manual", 475, "SUV", 4, false));
@@ -61,8 +59,54 @@ public class Main {
         carros.add(new Carro("Kia", "Optima", 2018, 120000, 58, 12, 4, true, "Automático", 500, "Sedan", 6, true));
         carros.add(new Carro("Mitsubishi", "Pajero", 2020, 220000, 75, 8, 4, true, "Automático", 800, "SUV", 8, true));
 
-        for (Carro c : carros) {
-            c.exibirInfo();
+        boolean rodando = true;
+
+        while (rodando) {
+            System.out.println("\n--- GoCar Loja de Carros ---");
+            System.out.println("1 - Ver modelos disponíveis");
+            System.out.println("2 - Selecionar marca e ver detalhes");
+            System.out.println("3 - Fechar aplicativo");
+            System.out.print("Escolha uma opção: ");
+
+            int opcao = sc.nextInt();
+            sc.nextLine();
+
+            switch (opcao) {
+                case 1:
+                    System.out.println("\nModelos disponíveis:");
+                    System.out.println("- " + carro1.getMarca() + " " + carro1.getModelo());
+                    System.out.println("- " + carro2.getMarca() + " " + carro2.getModelo());
+                    System.out.println("- " + carro3.getMarca() + " " + carro3.getModelo());
+                    break;
+
+                case 2:
+                    System.out.println("\nEscolha a marca:");
+                    System.out.println("1 - Toyota");
+                    System.out.println("2 - Fiat");
+                    System.out.println("3 - Honda");
+                    System.out.println("4 - Voltar");
+                    System.out.print("Digite a opção: ");
+                    int escolha = sc.nextInt();
+
+                    switch (escolha) {
+                        case 1: carro1.exibirInfo(); break;
+                        case 2: carro2.exibirInfo(); break;
+                        case 3: carro3.exibirInfo(); break;
+                        case 4: break;
+                        default: System.out.println("Opção inválida!");
+                    }
+                    break;
+
+                case 3:
+                    System.out.println("Encerrando aplicativo...");
+                    rodando = false;
+                    break;
+
+                default:
+                    System.out.println("Opção inválida!");
+            }
         }
+
+        sc.close();
     }
 }

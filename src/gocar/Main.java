@@ -1,6 +1,7 @@
 package gocar;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
@@ -64,7 +65,7 @@ public class Main {
         while (rodando) {
             System.out.println("\n--- GoCar Loja de Carros ---");
             System.out.println("1 - Ver modelos disponíveis");
-            System.out.println("2 - Selecionar marca e ver detalhes");
+            System.out.println("2 - Procurar por marca e ver detalhes");
             System.out.println("3 - Fechar aplicativo");
             System.out.print("Escolha uma opção: ");
 
@@ -74,27 +75,28 @@ public class Main {
             switch (opcao) {
                 case 1:
                     System.out.println("\nModelos disponíveis:");
-                    System.out.println("- " + carro1.getMarca() + " " + carro1.getModelo());
-                    System.out.println("- " + carro2.getMarca() + " " + carro2.getModelo());
-                    System.out.println("- " + carro3.getMarca() + " " + carro3.getModelo());
+                    for (Carro c : carros) {
+                        System.out.println("- " + c.getMarca() + " " + c.getModelo());
+                    }
                     break;
 
                 case 2:
-                    System.out.println("\nEscolha a marca:");
-                    System.out.println("1 - Toyota");
-                    System.out.println("2 - Fiat");
-                    System.out.println("3 - Honda");
-                    System.out.println("4 - Voltar");
-                    System.out.print("Digite a opção: ");
-                    int escolha = sc.nextInt();
+                    System.out.print("Digite a marca que deseja pesquisar: ");
+                    String marcaBusca = sc.nextLine();
 
-                    switch (escolha) {
-                        case 1: carro1.exibirInfo(); break;
-                        case 2: carro2.exibirInfo(); break;
-                        case 3: carro3.exibirInfo(); break;
-                        case 4: break;
-                        default: System.out.println("Opção inválida!");
+
+                    boolean encontrou = false;
+                    for (Carro c : carros) {
+                        if (c.getMarca().equalsIgnoreCase(marcaBusca)) {
+                            c.exibirInfo();
+                            encontrou = true;
+                        }
                     }
+
+                    if (!encontrou) {
+                        System.out.println("Nenhum carro encontrado para a marca: " + marcaBusca);
+                    }
+
                     break;
 
                 case 3:

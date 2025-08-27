@@ -48,7 +48,7 @@ public class Main {
                         case 1: carro1.exibirInfo(); break;
                         case 2: carro2.exibirInfo(); break;
                         case 3: carro3.exibirInfo(); break;
-                        case 4: break; // volta pro menu
+                        case 4: break; 
                         default: System.out.println("Opção inválida!");
                     }
                     break;
